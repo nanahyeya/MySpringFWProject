@@ -2,6 +2,8 @@ package myspring.di.annot;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,22 +11,24 @@ import org.springframework.stereotype.Component;
 
 @Component("helloBean")
 public class HelloBean {
-	@Value("어노테이션")
+	@Value("${myName}")
 	String name;
 	
-	@Autowired
-	@Qualifier("stringPrinter")
+//	@Autowired
+//	@Qualifier("stringPrinter")
+	@Resource(name = "${myPrinter}")
 	PrinterBean printer;
 	
-	
+	//@Value("${names.list.of.strings}")
+	@Value("#{'${names.list.of.strings}'.split(',')}") 
 	List<String> names;
 
 	public HelloBean() {
-		System.out.println(this.getClass().getName() + "기본 생성자 호출됨 !");
+		System.out.println(this.getClass().getName() + " 기본생성자 호출됨!");
 	}
 
 	public HelloBean(String name, PrinterBean printer) {
-		System.out.println(this.getClass().getName() + "오버로딩 생성자 호출됨 !");
+		System.out.println(this.getClass().getName() + " 오버로딩 생성자 호출됨!");
 		this.name = name;
 		this.printer = printer;
 	}
@@ -34,17 +38,17 @@ public class HelloBean {
 	}
 
 //	public void setNames(List<String> list) {
-//		System.out.println("setNames() 메서드 호출됨 !");
+//		System.out.println("setNames() 메서드 호출됨 ");
 //		this.names = list;
 //	}
 //
 //	public void setName(String name) {
-//		System.out.println("setNames() 메서드 호출됨 !" + name);
+//		System.out.println("setName() 메서드 호출됨 " + name);
 //		this.name = name;
 //	}
 //
 //	public void setPrinter(PrinterBean printer) {
-//		System.out.println("setPrinter() 메서드 호출됨 !" + printer.getClass().getName());
+//		System.out.println("setPrinter() 메서드 호출됨 " + printer.getClass().getName());
 //		this.printer = printer;
 //	}
 
