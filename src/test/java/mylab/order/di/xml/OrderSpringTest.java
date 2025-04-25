@@ -15,27 +15,27 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(locations = "classpath:mylab-order-di.xml")
 public class OrderSpringTest {
 	
-	@Resource(name = "shoppingCart")
-	ShoppingCart sc;
+	@Autowired
+	ShoppingCart shoppingCart;
 	
-	@Resource(name = "orderService")
-	OrderService os;
+	@Autowired
+	OrderService orderService;
 	
 	@Test
 	void testshoppingcart() {
-		assertNotNull(sc);
-		assertEquals(2, sc.getProducts().size());
-		assertEquals("product1", sc.getProducts().get(0).getName());
-		assertEquals("product2", sc.getProducts().get(1).getName());
+		assertNotNull(shoppingCart);
+		assertEquals(2, shoppingCart.getProducts().size());
+		assertEquals("product1", shoppingCart.getProducts().get(0).getName());
+		assertEquals("product2", shoppingCart.getProducts().get(1).getName());
 
 	}
 	
 	@Test
 	void testorderservice() {
-		assertNotNull(os);
-		assertEquals(sc, os.getShoppingCart());
-		assertEquals(2, os.getShoppingCart().getProducts().size());
-		assertEquals(6000, os.calculateOrderTotal());
+		assertNotNull(orderService);
+		assertEquals(shoppingCart, orderService.getShoppingCart());
+		assertEquals(2, orderService.getShoppingCart().getProducts().size());
+		assertEquals(6000, orderService.calculateOrderTotal());
 	}
 	
 
