@@ -31,4 +31,8 @@
 	</bean>
 	
 	
+	<!-- Auto Component Scanning 설정 -->
+	<context:component-scan base-package="myspring.di.annot"/>
+	
+	
 </beans>

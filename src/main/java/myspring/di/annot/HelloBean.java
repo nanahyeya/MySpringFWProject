@@ -2,13 +2,21 @@ package myspring.di.annot;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component("helloBean")
 public class HelloBean {
-	
+	@Value("어노테이션")
 	String name;
+	
+	@Autowired
+	@Qualifier("stringPrinter")
 	PrinterBean printer;
+	
+	
 	List<String> names;
 
 	public HelloBean() {
