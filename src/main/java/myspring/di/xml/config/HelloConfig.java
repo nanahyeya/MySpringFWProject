@@ -21,7 +21,7 @@ public class HelloConfig {
 	private Environment env;
 	
 	
-	@Bean
+	@Bean("strPrinter")
 	public Printer stringPrinter() {
 		return new StringPrinter();
 	}
