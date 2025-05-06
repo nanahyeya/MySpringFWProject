@@ -44,7 +44,10 @@ public class HelloConfig {
 
 	@Bean
 	public List<String> namesList() {
-		return Arrays.asList("Java", "Spring", "Kotlin");
+		String names = env.getProperty("names.list.of.strings");
+//		String[] strArray = names.split(",");
+//		return Arrays.asList(strArray);
+		return Arrays.asList(names.split(","));
 		
 	}
 }
